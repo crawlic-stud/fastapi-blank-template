@@ -31,6 +31,14 @@ services:
       - POSTGRES_DATABASE=${DATABASE_NAME}
       # - POSTGRES_HOST_AUTH_METHOD= "trust"
 
+  redis_server:
+    container_name: redis_server
+    image: "redis:alpine"
+    restart: always
+    expose:
+      - 6379
+    env_file: .env
+
   caddy_reverse_proxy:
     container_name: ${PROJECT_NAME}_caddy_reverse_proxy
     image: caddy:alpine
